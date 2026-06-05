@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quero Mais Lanches</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Hamburgueria">
+        </div>
+        <div class="cart-icon-container" onclick="toggleCart()">
+            <svg class="cart-icon" viewBox="0 0 24 24">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">&times;</div>
+        <ul>
+            <li><a href="#lanches" onclick="toggleMenu()">Lanches</a></li>
+            <li><a href="#lanches-calabresa" onclick="toggleMenu()">Lanches de Calabresa</a></li>
+            <li><a href="#lanches-frango" onclick="toggleMenu()">Lanches de Frango</a></li>
+            <li><a href="#hot-dogs" onclick="toggleMenu()">Hot Dogs</a></li>
+            <li><a href="#lanche-familia" onclick="toggleMenu()">Lanche Família</a></li>
+            <li><a href="#pasteis" onclick="toggleMenu()">Pastéis</a></li>
+            <li><a href="#fritas" onclick="toggleMenu()">Fritas</a></li>
+            <li><a href="#bebidas" onclick="toggleMenu()">Bebidas</a></li>
+            <li><a href="https://queromaislanches.online/localizacao" onclick="toggleMenu()">Localização</a></li>
+        </ul>
+    </nav>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Seu Carrinho</h2>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">R$ 0,00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeAllMenus()"></div>
+
+    <section class="carousel-container">
+        <div class="carousel-slide">
+            <div class="slide active"><img src="banner1.jpg" alt="Promoção 1"></div>
+            <div class="slide"><img src="banner2.jpg" alt="Promoção 2"></div>
+            <div class="slide"><img src="banner3.jpg" alt="Promoção 3"></div>
+        </div>
+    </section>
+
+    <section class="products-section" id="mais-pedidos">
+        <h2 class="section-title">Mais Pedidos</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="x-colegial.jpg" alt="X-Colegial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Colegial</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, salsicha, calabresa, cebola, tomate, batata palha, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 32,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Colegial', 32.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-tudo.jpg" alt="X-Tudo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Tudo</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, ovo, calabresa, filé de frango, salsicha, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Tudo', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-triplo-queijo.jpg" alt="X-Triplo Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Triplo Queijo</h3>
+                        <p class="product-desc">(2 Hambúrgueres, cebola, tomate, Catupiry, cheddar, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 35,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Triplo Queijo', 35.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-caipira.jpg" alt="X-Caipira" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Caipira</h3>
+                        <p class="product-desc">(Filé de frango, bacon, ovo, milho, Catupiry, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 38,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Caipira', 38.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot-dog-super.jpg" alt="Hot-Dog Super" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Hot-Dog Super</h3>
+                        <p class="product-desc">(2 Salsichas, bacon, calabresa, ovo, cebola, tomate, ketchup, maionese, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 29,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Hot-Dog Super', 29.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="lanches">
+        <h2 class="section-title">Lanches</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="x-salada.jpg" alt="X-Salada" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Salada</h3>
+                        <p class="product-desc">(Hambúrguer, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 24,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Salada', 24.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-burguer.jpg" alt="X-Burguer" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Burguer</h3>
+                        <p class="product-desc">(Hambúrguer, cebola, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 26,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Burguer', 26.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-burguer-duplo.jpg" alt="X-Burguer Duplo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Burguer Duplo</h3>
+                        <p class="product-desc">(2 Hambúrgueres, cebola, tomate, 2 presuntos, 2 queijos e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 28,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Burguer Duplo', 28.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg.jpg" alt="X-Egg" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg</h3>
+                        <p class="product-desc">(Hambúrguer, cebola, tomate, ovo, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 26,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg', 26.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-duplo.jpg" alt="X-Egg Duplo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Duplo</h3>
+                        <p class="product-desc">(2 Hambúrgueres, 2 ovos, cebola, tomate, batata palha, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 34,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Duplo', 34.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-bacon.jpg" alt="X-Bacon" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Bacon</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, cebola, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 28,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Bacon', 28.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-bacon.jpg" alt="X-Egg Bacon" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Bacon</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, cebola, tomate, ovo, batata palha, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 29,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Bacon', 29.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-bacon-especial.jpg" alt="X-Egg Bacon Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Bacon Especial</h3>
+                        <p class="product-desc">(2 Hambúrgueres, bacon 2x mais, 2 ovos, cebola, tomate, 2 presuntos, 2 queijos, Catupiry, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 36,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Bacon Especial', 36.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-colegial.jpg" alt="X-Colegial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Colegial</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, salsicha, calabresa, cebola, tomate, batata palha, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 32,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Colegial', 32.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-bacon-cream.jpg" alt="X-Bacon Cream" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Bacon Cream</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, cebola, tomate, Catupiry, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 30,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Bacon Cream', 30.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-tudo.jpg" alt="X-Tudo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Tudo</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, ovo, calabresa, filé de frango, salsicha, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Tudo', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-calabacon.jpg" alt="X-Calabacon" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Calabacon</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, calabresa, cebola, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 26,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Calabacon', 26.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-triplo-queijo.jpg" alt="X-Triplo Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Triplo Queijo</h3>
+                        <p class="product-desc">(2 Hambúrgueres, cebola, tomate, Catupiry, cheddar, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 35,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Triplo Queijo', 35.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="lanches-calabresa">
+        <h2 class="section-title">Lanches de Calabresa</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="x-calabresa.jpg" alt="X-Calabresa" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Calabresa</h3>
+                        <p class="product-desc">(Calabresa, cebola, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 24,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Calabresa', 24.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-calabresa.jpg" alt="X-Egg Calabresa" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Calabresa</h3>
+                        <p class="product-desc">(Calabresa, cebola, tomate, ovo, batata palha, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 27,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Calabresa', 27.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-calabresa-bacon.jpg" alt="X-Egg Calabresa Bacon" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Calabresa Bacon</h3>
+                        <p class="product-desc">(Calabresa, bacon, ovo, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 30,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Calabresa Bacon', 30.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="lanches-frango">
+        <h2 class="section-title">Lanches de Frango</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="x-frango.jpg" alt="X-Frango" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Frango</h3>
+                        <p class="product-desc">(Filé de frango, bacon, cebola, tomate, presunto, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 30,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Frango', 30.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-egg-frango.jpg" alt="X-Egg Frango" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Egg Frango</h3>
+                        <p class="product-desc">(Filé de frango, bacon, ovo, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 32,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Egg Frango', 32.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-frango-calabresa.jpg" alt="X-Frango Calabresa" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Frango Calabresa</h3>
+                        <p class="product-desc">(Filé de frango, bacon, ovo, calabresa, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 36,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Frango Calabresa', 36.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-caipira.jpg" alt="X-Caipira" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Caipira</h3>
+                        <p class="product-desc">(Filé de frango, bacon, ovo, milho, Catupiry, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 38,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Caipira', 38.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-calafrango-3-queijos.jpg" alt="X-Calafrango 3 Queijos" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Calafrango 3 Queijos</h3>
+                        <p class="product-desc">(Filé de frango, calabresa, cheddar, Catupiry, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Calafrango 3 Queijos', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-frango-burguer.jpg" alt="X-Frango Burguer" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Frango Burguer</h3>
+                        <p class="product-desc">(Filé de frango, hambúrguer, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 39,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Frango Burguer', 39.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="x-tudo.jpg" alt="X-Tudo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">X-Tudo</h3>
+                        <p class="product-desc">(Hambúrguer, bacon, ovo, calabresa, filé de frango, salsicha, cebola, tomate, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'X-Tudo', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="hot-dogs">
+        <h2 class="section-title">Hot-Dog</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="hot-dog-simples.jpg" alt="Hot-Dog Simples" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Hot-Dog Simples</h3>
+                        <p class="product-desc">(Salsicha, bacon, cebola, tomate, ketchup, maionese, queijo e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 22,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Hot-Dog Simples', 22.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot-dog-especial.jpg" alt="Hot-Dog Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Hot-Dog Especial</h3>
+                        <p class="product-desc">(2 Salsichas, bacon, calabresa, cebola, tomate, ketchup, maionese, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 26,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Hot-Dog Especial', 26.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot-dog-super.jpg" alt="Hot-Dog Super" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Hot-Dog Super</h3>
+                        <p class="product-desc">(2 Salsichas, bacon, calabresa, ovo, cebola, tomate, ketchup, maionese, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 29,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Hot-Dog Super', 29.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot-dog-caipira.jpg" alt="Hot-Dog Caipira" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Hot-Dog Caipira</h3>
+                        <p class="product-desc">(2 Salsichas, bacon, filé de frango desfiado, milho, ovo, cebola, tomate, maionese, presunto, queijo, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 32,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Hot-Dog Caipira', 32.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="lanche-familia">
+        <h2 class="section-title">Lanche Família</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="quero-mais-a-moda-da-casa.jpg" alt="Quero Mais à Moda da Casa" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Quero Mais à Moda da Casa</h3>
+                        <p class="product-desc">(4 Hambúrgueres, 4 ovos, 4 salsichas, bacon, calabresa, filé de frango, cebola, tomate, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 92,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Quero Mais à Moda da Casa', 92.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="quero-mais-frango.jpg" alt="Quero Mais Frango" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Quero Mais Frango</h3>
+                        <p class="product-desc">(400 grs. Filé de frango, Catupiry, milho, cebola, tomate, 4 presuntos, 4 queijos, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 77,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Quero Mais Frango', 77.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="quero-mais-hot-dog.jpg" alt="Quero Mais Hot Dog" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Quero Mais Hot Dog</h3>
+                        <p class="product-desc">(6 salsichas, Catupiry, bacon, cebola, tomate, 5 presuntos, 5 queijos, batata palha e alface)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 75,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Quero Mais Hot Dog', 75.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="pasteis">
+        <h2 class="section-title">Pastéis</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="carne.jpg" alt="Carne" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne</h3>
+                        <p class="product-desc">Pastel tradicional com recheio de carne moída.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 15,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne', 15.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="carne-com-queijo.jpg" alt="Carne com Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne com Queijo</h3>
+                        <p class="product-desc">Recheio cremoso de carne moída bem tempoada com queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 18,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne com Queijo', 18.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="carne-com-ovo.jpg" alt="Carne com Ovo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne com Ovo</h3>
+                        <p class="product-desc">Combinação clássica de recheio de carne moída com pedaços de ovo.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 17,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne com Ovo', 17.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="carne-queijo-e-bacon.jpg" alt="Carne, Queijo e Bacon" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne, Queijo e Bacon</h3>
+                        <p class="product-desc">Super recheio de carne moída temperada, queijo derretido e pedaços de bacon crocante.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne, Queijo e Bacon', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="carne-bacon-e-milho.jpg" alt="Carne, Bacon e Milho" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne, Bacon e Milho</h3>
+                        <p class="product-desc">Pastel crocante recheado com carne moída, bacon em cubos e milho verde.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 19,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne, Bacon e Milho', 19.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="carne-especial.jpg" alt="Carne Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Carne Especial</h3>
+                        <p class="product-desc">(Carne, ovo, azeitona, tomate, orégano e queijo)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 22,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Carne Especial', 22.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="queijo.jpg" alt="Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Queijo</h3>
+                        <p class="product-desc">Pastel fartamente recheado com queijo derretido com massa bem crocante.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 15,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Queijo', 15.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="queijo-milho-e-oregano.jpg" alt="Queijo, Milho e Orégano" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Queijo, Milho e Orégano</h3>
+                        <p class="product-desc">Queijo derretido acompanhado de milho doce e um toque especial de orégano.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 18,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Queijo, Milho e Orégano', 18.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="queijo-catupiry-e-oregano.jpg" alt="Queijo, Catupiry e Orégano" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Queijo, Catupiry e Orégano</h3>
+                        <p class="product-desc">Uma combinação super cremosa de queijo, Catupiry e temperado com orégano.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Queijo, Catupiry e Orégano', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="queijo-cheddar-e-oregano.jpg" alt="Queijo, Cheddar e Orégano" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Queijo, Cheddar e Orégano</h3>
+                        <p class="product-desc">Mix marcante de queijo tradicional e queijo cheddar cremoso com orégano.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 19,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Queijo, Cheddar e Orégano', 19.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="queijo-especial.jpg" alt="Queijo Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Queijo Especial</h3>
+                        <p class="product-desc">(Mussarela, Catupiry, cheddar e orégano)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 21,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Queijo Especial', 21.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango.jpg" alt="Frango" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango</h3>
+                        <p class="product-desc">Recheio clássico de frango desfiado bem temperado.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 15,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango', 15.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango-e-queijo.jpg" alt="Frango e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango e Queijo</h3>
+                        <p class="product-desc">Frango desfiado suculento misturado com uma camada generosa de queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 18,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango e Queijo', 18.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango-e-catupiry.jpg" alt="Frango e Catupiry" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango e Catupiry</h3>
+                        <p class="product-desc">Frango desfiado suculento misturado com Catupiry legítimo.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango e Catupiry', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango-e-cheddar.jpg" alt="Frango e Cheddar" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango e Cheddar</h3>
+                        <p class="product-desc">Saboroso frango desfiado combinado com queijo cheddar cremoso.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango e Cheddar', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango-queijo-e-azeitona.jpg" alt="Frango, Queijo e Azeitona" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango, Queijo e Azeitona</h3>
+                        <p class="product-desc">Frango desfiado, queijo derretido e pedaços selecionados de azeitona.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango, Queijo e Azeitona', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="frango-especial.jpg" alt="Frango Especial" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Frango Especial</h3>
+                        <p class="product-desc">(Frango, Catupiry, cheddar e queijo)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 25,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Frango Especial', 25.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="presunto-e-queijo.jpg" alt="Presunto e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Presunto e Queijo</h3>
+                        <p class="product-desc">Pastel tradicional da combinação de presunto fatiado e queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 15,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Presunto e Queijo', 15.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="pizza.jpg" alt="Pizza" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Pizza</h3>
+                        <p class="product-desc">(Presunto, queijo, cebola, tomate e orégano)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 19,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Pizza', 19.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="pizza-e-catupiry.jpg" alt="Pizza e Catupiry" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Pizza e Catupiry</h3>
+                        <p class="product-desc">(Presunto, queijo, cebola, tomate e queijo) turbinado com Catupiry cremoso.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 21,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Pizza e Catupiry', 21.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="pizza-e-cheddar.jpg" alt="Pizza e Cheddar" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Pizza e Cheddar</h3>
+                        <p class="product-desc">O clássico sabor de pizza complementado por queijo cheddar cremoso.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 21,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Pizza e Cheddar', 21.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="calabresa.jpg" alt="Calabresa" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Calabresa</h3>
+                        <p class="product-desc">Pastel com uma boa porção de linguiça calabresa moída e temperada.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 15,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Calabresa', 15.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="calabresa-e-queijo.jpg" alt="Calabresa e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Calabresa e Queijo</h3>
+                        <p class="product-desc">Linguiça calabresa moída saborosa coberta com queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 17,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Calabresa e Queijo', 17.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="calabresa-e-catupiry.jpg" alt="Calabresa e Catupiry" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Calabresa e Catupiry</h3>
+                        <p class="product-desc">Linguiça calabresa moída temperada perfeitamente combinada com Catupiry cremoso.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 19,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Calabresa e Catupiry', 19.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="calabresa-e-cheddar.jpg" alt="Calabresa e Cheddar" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Calabresa e Cheddar</h3>
+                        <p class="product-desc">Recheio suculento de calabresa moída acompanhado por cheddar cremoso.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 19,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Calabresa e Cheddar', 19.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="calabresa-catupiry-e-queijo.jpg" alt="Calabresa, Catupiry e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Calabresa, Catupiry e Queijo</h3>
+                        <p class="product-desc">Uma combinação recheada de calabresa moída, Catupiry e queijo mussarela derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 21,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Calabresa, Catupiry e Queijo', 21.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="palmito-e-queijo.jpg" alt="Palmito e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Palmito e Queijo</h3>
+                        <p class="product-desc">Pedaços macios de palmito envoltos em queijo derretido de excelente qualidade.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 18,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Palmito e Queijo', 18.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="palmito-milho-e-catupiry.jpg" alt="Palmito, Milho e Catupiry" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Palmito, Milho e Catupiry</h3>
+                        <p class="product-desc">Opção leve de recheio vegetariano e cremoso composto por palmito, milho verde e Catupiry.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Palmito, Milho e Catupiry', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="palmito-bacon-e-queijo.jpg" alt="Palmito, Bacon e Queijo" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Palmito, Bacon e Queijo</h3>
+                        <p class="product-desc">A união da combinação de palmito com a crocância do bacon e cremosidade do queijo.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Palmito, Bacon e Queijo', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="fritas">
+        <h2 class="section-title">Fritas</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="batata-kids.jpg" alt="Batata kids (300g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata kids (300g)</h3>
+                        <p class="product-desc">Porção individual de batatas fritas crocantes e douradas.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 20,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata kids (300g)', 20.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-media.jpg" alt="Batata Média (600g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Média (600g)</h3>
+                        <p class="product-desc">Porção de tamanho médio ideal para dividir, sequinha por fora e macia por dentro.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 25,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Média (600g)', 25.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-grande.jpg" alt="Batata grande (1kg)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata grande (1kg)</h3>
+                        <p class="product-desc">Porção gigante de batata frita bem crocante para compartilhar com a galera.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 33,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata grande (1kg)', 33.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-media-com-bacon.jpg" alt="Batata Média com Bacon (600g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Média com Bacon (600g)</h3>
+                        <p class="product-desc">Porção média de batatas fritas finalizadas com cubos de bacon bem crocantes.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 34,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Média com Bacon (600g)', 34.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-grande-com-bacon.jpg" alt="Batata grande com bacon (1kg)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata grande com bacon (1kg)</h3>
+                        <p class="product-desc">A porção de batata frita coberta com muito bacon crocante.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata grande com bacon (1kg)', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-media-com-queijo.jpg" alt="Batata Média com Queijo (600g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Média com Queijo (600g)</h3>
+                        <p class="product-desc">Nossas tradicionais batatas fritas servidas com uma deliciosa cobertura de queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 34,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Média com Queijo (600g)', 34.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-grande-com-queijo.jpg" alt="Batata grande com Queijo (1kg)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata grande com Queijo (1kg)</h3>
+                        <p class="product-desc">Porção reforçada de 1kg batatas fritas inteiramente com delicioso queijo derretido.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 40,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata grande com Queijo (1kg)', 40.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-media-com-bacon-e-queijo.jpg" alt="Batata Média com Bacon e Queijo (600g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Média com Bacon e Queijo (600g)</h3>
+                        <p class="product-desc">Uma generosa porção de batatas acompanhada de bastante queijo derretido e pedaços de bacon por cima.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 39,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Média com Bacon e Queijo (600g)', 39.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-grande-com-bacon-e-queijo.jpg" alt="Batata Grande Com Bacon E Queijo (1kg)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Grande Com Bacon E Queijo (1kg)</h3>
+                        <p class="product-desc">Nossa batata frita de 1kg acompanhada de bastante queijo derretido e bacon em cubos.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 44,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Grande Com Bacon E Queijo (1kg)', 44.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-media-completa.jpg" alt="Batata Média completa (600g)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata Média completa (600g)</h3>
+                        <p class="product-desc">(bacon, queijo cheddar e Catupiry)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 44,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata Média completa (600g)', 44.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="batata-grande-completa.jpg" alt="Batata grande completa (1kg)" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Batata grande completa (1kg)</h3>
+                        <p class="product-desc">(bacon, queijo cheddar e Catupiry)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 50,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Batata grande completa (1kg)', 50.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="bebidas">
+        <h2 class="section-title">Bebidas</h2>
+        <div class="products-container">
+            <div class="products-track">
+                <div class="product-card">
+                    <img src="coca-cola-2-litros.jpg" alt="Coca-cola 2 litros" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Coca-cola 2 litros</h3>
+                        <p class="product-desc">Garrafa de 2 litros ideal para acompanhar o seu lanche em família.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 16,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Coca-cola 2 litros', 16.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="refrigerante-diversos.jpg" alt="Refrigerante diversos" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Refrigerante diversos</h3>
+                        <p class="product-desc">(itubaína ou conquista Guaraná)</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 11,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Refrigerante diversos', 11.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="refrigerante-lata-350ml.jpg" alt="Refrigerante lata 350ml" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Refrigerante lata 350ml</h3>
+                        <p class="product-desc">Refrigerante individual gelado para matar sua sede.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 7,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Refrigerante lata 350ml', 7.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="agua-mineral-500ml.jpg" alt="Água Mineral 500ml" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">Água Mineral 500ml</h3>
+                        <p class="product-desc">Garrafa de água mineral refrescante de 500ml.</p>
+                        <div class="product-footer">
+                            <span class="product-price">R$ 4,00</span>
+                            <button class="order-btn" onclick="addToCart(this, 'Água Mineral 500ml', 4.00)">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <a href="https://wa.me/5500999999999?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon-png">
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    overflow-x: hidden;
+    font-size: 1.2rem; /* Aumentado o tamanho base de fonte do site */
+}
+
+/* Cabeçalho */
+header {
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    height: 115px; /* Aumentado ligeiramente para comportar os elementos maiores */
+    border-bottom: 2px solid #8B0000;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo img {
+    height: 90px; /* Aumentado */
+    max-width: 180px; /* Aumentado */
+    object-fit: contain;
+}
+
+/* Menu Hamburguer (3 linhas) */
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 36px; /* Aumentado */
+    height: 28px; /* Aumentado */
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+    height: 4px; /* Mais espesso */
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.menu-btn:hover span {
+    background-color: #8B0000;
+}
+
+.header-spacer {
+    width: 36px;
+}
+
+/* Menu Lateral (Sidebar Categorias) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px; /* Ajustado para nova largura */
+    width: 320px; /* Aumentado para dar mais espaço às fontes grandes */
+    height: 100%;
+    background-color: #0d0d0d;
+    z-index: 10000;
+    transition: 0.4s ease;
+    padding: 25px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+    border-right: 2px solid #8B0000;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.close-btn {
+    text-align: right;
+    font-size: 42px; /* Aumentado */
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #8B0000;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.sidebar ul li {
+    margin-bottom: 24px;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem; /* Aumentado consideravelmente */
+    font-weight: 600;
+    display: block;
+    padding: 12px;
+    border-bottom: 1px solid #262626;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #8B0000;
+    padding-left: 22px;
+    background-color: #1a1a1a;
+}
+
+/* Overlay escuro quando o menu abre */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Carrossel */
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 450px;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+}
+
+/* ==========================================================================
+   CARROSSEL DE PRODUTOS TOUCH PREMIUM
+   ========================================================================== */
+.products-section {
+    margin: 50px auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+.section-title {
+    font-size: 2rem; /* Aumentado */
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 5px solid #8B0000;
+    padding-left: 12px;
+}
+
+/* Container de rolagem touch */
+.products-container {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 15px;
+}
+
+.products-container::-webkit-scrollbar {
+    display: none;
+}
+
+.products-track {
+    display: flex;
+    gap: 25px;
+}
+
+/* Card Individual */
+.product-card {
+    flex: 0 0 310px; /* Aumentado para comportar os textos maiores sem quebrar */
+    background-color: #0d0d0d;
+    border-radius: 12px;
+    border: 1px solid #262626;
+    overflow: hidden;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: #8B0000;
+}
+
+.product-img {
+    width: 100%;
+    height: 190px; /* Aumentado */
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.product-title {
+    font-size: 1.45rem; /* Aumentado */
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.product-desc {
+    font-size: 1.05rem; /* Aumentado */
+    color: #aaaaaa;
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-price {
+    font-size: 1.6rem; /* Aumentado */
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Botão Peça Já */
+.order-btn {
+    background-color: #8B0000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px; /* Maior área de clique */
+    font-size: 1.15rem; /* Aumentado */
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.order-btn:hover {
+    background-color: #b30000;
+}
+
+/* ==========================================================================
+   ÍCONE E CONTADOR DO CARRINHO (CABEÇALHO)
+   ========================================================================== */
+.cart-icon-container {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+}
+
+.cart-icon {
+    width: 38px; /* Ícone maior e de mais destaque */
+    height: 38px;
+    fill: #ffffff;
+    transition: fill 0.3s ease;
+}
+
+.cart-icon-container:hover .cart-icon {
+    fill: #8B0000;
+}
+
+.cart-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #8B0000;
+    color: #ffffff;
+    font-size: 0.95rem; /* Aumentado */
+    font-weight: 700;
+    width: 25px; /* Aumentado */
+    height: 25px; /* Aumentado */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   SIDEBAR DO CARRINHO (DIREITA)
+   ========================================================================== */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -380px; /* Ajustado para nova largura */
+    width: 380px; /* Expandido para dar excelente leitura com fontes maiores */
+    height: 100%;
+    background-color: #0d0d0d;
+    z-index: 10000;
+    transition: 0.4s ease;
+    padding: 25px;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
+    border-left: 2px solid #8B0000;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #262626;
+    padding-bottom: 15px;
+}
+
+.cart-header h2 {
+    font-size: 1.75rem; /* Aumentado */
+    color: #ffffff;
+}
+
+.close-cart {
+    font-size: 38px; /* Aumentado */
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-cart:hover {
+    color: #8B0000;
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-top: 25px;
+    padding-right: 5px;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background-color: #262626;
+    border-radius: 4px;
+}
+
+/* Card interno do item no carrinho */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161616;
+    padding: 15px; /* Aumentado */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #262626;
+}
+
+.cart-item-info h4 {
+    font-size: 1.25rem; /* Aumentado */
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+/* Preço alterado para Branco conforme solicitado */
+.cart-item-info p {
+    font-size: 1.15rem; /* Aumentado */
+    color: #ffffff; /* Alterado de vermelho para BRANCO */
+    font-weight: 600;
+}
+
+/* Botões de quantidade no carrinho */
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    background-color: #262626;
+    color: #ffffff;
+    border: none;
+    width: 30px; /* Aumentado */
+    height: 30px; /* Aumentado */
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.15rem; /* Aumentado */
+}
+
+.qty-btn:hover {
+    background-color: #8B0000;
+}
+
+.cart-footer {
+    border-top: 1px solid #262626;
+    padding-top: 20px;
+    margin-top: auto;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.55rem; /* Aumentado */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+#cart-total-price {
+    color: #ffffff;
+}
+
+.checkout-btn {
+    width: 100%;
+    background-color: #8B0000;
+    color: #ffffff;
+    border: none;
+    padding: 16px; /* Aumentado */
+    font-size: 1.35rem; /* Aumentado */
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.checkout-btn:hover {
+    background-color: #b30000;
+}
+
+/* ==========================================================================
+   ELEMENTO DA ANIMAÇÃO DO CARD (FLY EFFECT)
+   ========================================================================== */
+.flying-img {
+    position: fixed;
+    z-index: 20000;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border: 2px solid #8B0000;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Botão Flutuante do WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+}
+
+/* Efeito ao passar o mouse */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #20ba5a;
+}
+
+/* Tamanho e cor do ícone SVG */
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+    fill: #fff;
+}
+
+/* Responsividade (caso queira o botão um pouco menor em celulares) */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Botão Flutuante do WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00e252; /* Mantém o fundo verde caso a sua imagem seja vazada */
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #00e252;
+}
+
+/* Tamanho da imagem PNG */
+.whatsapp-icon-png {
+    width: 70px;  /* Ajuste aqui se achar que a imagem ficou grande ou pequena */
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 70px;
+        height: 70px;
+        bottom: 15px;
+        right: 15px;
+    }
+    .whatsapp-icon-png {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Isso cria o recuo perfeito para as seções pararem exatamente embaixo do header */
+.products-section {
+    scroll-margin-top: 150px; /* Ajuste esse valor se seu cabeçalho for maior ou menor */
+}
