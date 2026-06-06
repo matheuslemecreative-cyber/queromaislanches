@@ -186,7 +186,7 @@ function checkoutWhatsApp() {
 
     message += `──────────────────────\n`;
     message += `*VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
-    message += `Por favor, envie o seu endereço completo e a forma de pagamento para finalizarmos!`;
+    message += `Por favor, envie o seu endereço completo para calcularmos a taxa de entrega. Envie também a forma de pagamento para finalizarmos!`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
